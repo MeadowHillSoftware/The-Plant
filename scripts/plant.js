@@ -359,9 +359,11 @@ oPlant.getSection = function() {
     var iText = oPlant.iText;
     var aLastCard = oPlant.aPlacedCards[(oPlant.aPlacedCards.length - 1)];
     var sFile = aLastCard[0];
+    var oSectionDiv = $('#section-div');
     if (sFile === "rust card down.png") {
         oPlant.iText = 0;
         iText = 0;
+        //oSectionDiv.removeClass('hidden');
         if (oPlant.aHand.length === 0) {
             oPlant.determineEnding(false);
         }
@@ -376,6 +378,7 @@ oPlant.getSection = function() {
             var sSource = "images/" + sSection;
             oImage.attr('src', sSource);
             oPlant.iText = 1;
+            oSectionDiv.removeClass('hidden');
         } else if (iText === 1) {
             var iNumber = Number(sNumber);
             var aSections = oPlant.oCardPaths[iNumber][0];
@@ -485,6 +488,7 @@ oPlant.getSection = function() {
             if (oTable.length !== 0) {
                 oTable.remove();
                 oPlant.iText = 0;
+                oSectionDiv.addClass('hidden');
             } else {
                 var oImage = $('#section-image');
                 oImage.removeAttr('src');
@@ -495,6 +499,7 @@ oPlant.getSection = function() {
             var oTable = $('#emotion-table');
             oTable.remove();
             oPlant.iText = 0;
+            oSectionDiv.addClass('hidden');
         }
     }
 };

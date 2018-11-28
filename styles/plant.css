@@ -1,0 +1,26 @@
+.body {
+    background-color: rgb(0,0,0);
+}
+
+.section-div {
+    background-color: rgb(0,0,0);
+    border-bottom: 1px solid rgb(96,0,0);
+    border-left: 1px solid rgb(96,0,0);
+    border-right: 1px solid rgb(96,0,0);
+    border-top: 1px solid rgb(96,0,0);
+    height: 480px;
+    left: 50%;
+    margin-left: -320px;
+    margin-top: -240px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    position: fixed;
+    top: 50%;
+    width: 640px;
+}
+
+.hidden {
+    visibility: hidden;
+}
