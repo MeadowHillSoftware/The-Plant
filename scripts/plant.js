@@ -217,6 +217,7 @@ oPlant.createTotals = function() {
 };
 
 oPlant.determineEnding = function(bEdge) {
+    console.log('determining');
     if (bEdge) {
         var iIndex = 0;
     } else {
@@ -375,9 +376,9 @@ oPlant.getSection = function() {
     if (sFile === "rust card down.png") {
         oPlant.iText = 0;
         iText = 0;
-        //oSectionDiv.removeClass('hidden');
         if (oPlant.aHand.length === 0) {
             oPlant.determineEnding(false);
+            oSectionDiv.removeClass('hidden');
         }
     } else {
         var aParts = sFile.split(" ");
@@ -627,7 +628,7 @@ oPlant.iAnger = 0;
 
 oPlant.iFear = 0;
 
-oPlant.iPlantSize = 10;
+oPlant.iPlantSize = 7;
 
 oPlant.iText = 0;
 
