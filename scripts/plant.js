@@ -15,6 +15,8 @@ oPlant.aDetails = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "
 
 oPlant.addMainEventListeners = function() {
     $('#body')
+        .on('keydown', oPlant.handleKeydown);
+    $('#body')
         .on('keypress', oPlant.handleKeypress);
 };
 
@@ -110,6 +112,7 @@ oPlant.createColumn = function(iLeft, iRight) {
         var sRowId = "row_" + String(i);
         var oRow = $(('#' + sRowId));
         var oCell = $('<td></td>');
+        oCell.addClass('card-cell');
         var sCellId = String(iNumber) + "_" + String(i);
         oCell.attr('id', sCellId);
         var oImage = $('<img></img>');
@@ -133,6 +136,7 @@ oPlant.createRow = function(iNumber) {
     var sTransparency = "images/plant card transparency.png";
     for (var i = iMinX; i < (iMaxX + 1); i++) {
         var oCell = $('<td></td>');
+        oCell.addClass('card-cell');
         var sCellId = String(i) + "_" + sNumber;
         oCell.attr('id', sCellId);
         var oImage = $('<img></img>');
@@ -268,12 +272,14 @@ oPlant.firstCard = function() {
     var oRow = $('<tr></tr>');
     oRow.attr('id', 'row_1');
     var oCell = $('<td></td>');
+    oCell.addClass('card-cell');
     oCell.attr('id', '-1_1');
     var oImage = $('<img></img>');
     oImage.attr('src', sTransparency);
     oCell.append(oImage);
     oRow.append(oCell);
     var oCell = $('<td></td>');
+    oCell.addClass('card-cell');
     oCell.attr('id', '0_1');
     var oImage = $('<img></img>');
     oImage.attr('src', sTransparency);
@@ -289,12 +295,14 @@ oPlant.firstCard = function() {
     var oRow = $('<tr></tr>');
     oRow.attr('id', 'row_0');
     var oCell = $('<td></td>');
+    oCell.addClass('card-cell');
     oCell.attr('id', '-1_0');
     var oImage = $('<img></img>');
     oImage.attr('src', sTransparency);
     oCell.append(oImage);
     oRow.append(oCell);
     var oCell = $('<td></td>');
+    oCell.addClass('card-cell');
     oCell.attr('id', '0_0');
     var sSource = "images/" + sCard;
     var oImage = $('<img></img>');
@@ -303,6 +311,7 @@ oPlant.firstCard = function() {
     oCell.append(oImage);
     oRow.append(oCell);
     var oCell = $('<td></td>');
+    oCell.addClass('card-cell');
     oCell.attr('id', '1_0');
     var oImage = $('<img></img>');
     oImage.attr('src', sTransparency);
@@ -312,18 +321,21 @@ oPlant.firstCard = function() {
     var oRow = $('<tr></tr>');
     oRow.attr('id', 'row_-1');
     var oCell = $('<td></td>');
+    oCell.addClass('card-cell');
     oCell.attr('id', '-1_-1');
     var oImage = $('<img></img>');
     oImage.attr('src', sTransparency);
     oCell.append(oImage);
     oRow.append(oCell);
     var oCell = $('<td></td>');
+    oCell.addClass('card-cell');
     oCell.attr('id', '0_-1');
     var oImage = $('<img></img>');
     oImage.attr('src', sTransparency);
     oCell.append(oImage);
     oRow.append(oCell);
     var oCell = $('<td></td>');
+    oCell.addClass('card-cell');
     oCell.attr('id', '1_-1');
     var oImage = $('<img></img>');
     oImage.attr('src', sTransparency);
@@ -556,6 +568,14 @@ oPlant.handleEnterButton = function(event) {
     event.stopPropagation();
     var sText = $('#text-area').val();
     $('#text-div').remove();
+};
+
+oPlant.handleKeydown = function(event) {
+    event.stopPropagation();
+    var aArrows = ["ArrowDown", "ArrowLeft", "ArrowRight", "ArrowUp"];
+    if (event.type === "keydown" && aArrows.indexOf(event.key) !== -1) {
+        oPlant.handleKeypress(event);
+    }
 };
 
 oPlant.handleKeypress = function(event) {

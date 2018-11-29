@@ -2,6 +2,15 @@
     background-color: rgb(0,0,0);
 }
 
+.card-cell {
+    height: 358px;
+    width: 219px;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
 .section-div {
     background-color: rgb(0,0,0);
     border-bottom: 1px solid rgb(96,0,0);
@@ -19,8 +28,4 @@
     position: fixed;
     top: 50%;
     width: 640px;
-}
-
-.hidden {
-    visibility: hidden;
 }
