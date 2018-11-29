@@ -4,7 +4,8 @@
 
 //The source code is released under the Apache License
 
-//outline: 219x358 (4 pixels wide)
+//outline: 219x363
+//vertical: 3, horizontal: 2
 //card: 203x342
 
 var oPlant = {};
@@ -117,6 +118,7 @@ oPlant.createColumn = function(iLeft, iRight) {
         oCell.attr('id', sCellId);
         var oImage = $('<img></img>');
         oImage.attr('src', sTransparency);
+        oImage.addClass('tile-table');
         oCell.append(oImage);
         if (sDirection === "prepend") {
             oRow.prepend(oCell);
@@ -141,6 +143,7 @@ oPlant.createRow = function(iNumber) {
         oCell.attr('id', sCellId);
         var oImage = $('<img></img>');
         oImage.attr('src', sTransparency);
+        oImage.addClass('tile-table');
         oCell.append(oImage);
         oRow.append(oCell);
     }
@@ -277,6 +280,7 @@ oPlant.firstCard = function() {
     oCell.attr('id', '-1_1');
     var oImage = $('<img></img>');
     oImage.attr('src', sTransparency);
+    oImage.addClass('tile-table');
     oCell.append(oImage);
     oRow.append(oCell);
     var oCell = $('<td></td>');
@@ -284,12 +288,14 @@ oPlant.firstCard = function() {
     oCell.attr('id', '0_1');
     var oImage = $('<img></img>');
     oImage.attr('src', sTransparency);
+    oImage.addClass('tile-table');
     oCell.append(oImage);
     oRow.append(oCell);
     var oCell = $('<td></td>');
     oCell.attr('id', '1_1');
     var oImage = $('<img></img>');
     oImage.attr('src', sTransparency);
+    oImage.addClass('tile-table');
     oCell.append(oImage);
     oRow.append(oCell);
     oTable.append(oRow);
@@ -300,6 +306,7 @@ oPlant.firstCard = function() {
     oCell.attr('id', '-1_0');
     var oImage = $('<img></img>');
     oImage.attr('src', sTransparency);
+    oImage.addClass('tile-table');
     oCell.append(oImage);
     oRow.append(oCell);
     var oCell = $('<td></td>');
@@ -309,6 +316,7 @@ oPlant.firstCard = function() {
     var oImage = $('<img></img>');
     oImage.attr('id', 'card_0');
     oImage.attr('src', sSource);
+    oImage.addClass('tile-table');
     oCell.append(oImage);
     oRow.append(oCell);
     var oCell = $('<td></td>');
@@ -316,6 +324,7 @@ oPlant.firstCard = function() {
     oCell.attr('id', '1_0');
     var oImage = $('<img></img>');
     oImage.attr('src', sTransparency);
+    oImage.addClass('tile-table');
     oCell.append(oImage);
     oRow.append(oCell);
     oTable.append(oRow);
@@ -326,6 +335,7 @@ oPlant.firstCard = function() {
     oCell.attr('id', '-1_-1');
     var oImage = $('<img></img>');
     oImage.attr('src', sTransparency);
+    oImage.addClass('tile-table');
     oCell.append(oImage);
     oRow.append(oCell);
     var oCell = $('<td></td>');
@@ -333,6 +343,7 @@ oPlant.firstCard = function() {
     oCell.attr('id', '0_-1');
     var oImage = $('<img></img>');
     oImage.attr('src', sTransparency);
+    oImage.addClass('tile-table');
     oCell.append(oImage);
     oRow.append(oCell);
     var oCell = $('<td></td>');
@@ -340,6 +351,7 @@ oPlant.firstCard = function() {
     oCell.attr('id', '1_-1');
     var oImage = $('<img></img>');
     oImage.attr('src', sTransparency);
+    oImage.addClass('tile-table');
     oCell.append(oImage);
     oRow.append(oCell);
     oTable.append(oRow);
@@ -754,6 +766,29 @@ oPlant.selectCard = function() {
     return sCard;
 };
 
+oPlant.tilePlaySurface = function() {
+    var iHeight = $(document).height();
+    var iWidth = $(document).width();
+    var iRows = iHeight / 512;
+    var iColumns = iWidth / 512;
+    iRows = Math.ceil(iRows);
+    iColumns = Math.ceil(iColumns);
+    var oTable = $('#tile-table');
+    for (var r = 0; r < iRows; r++) {
+        var oRow = $('<tr></tr>');
+        for (var c = 0; c < iColumns; c++) {
+            var oCell = $('<td></td>');
+            var oImage = $('<img></img>');
+            oImage.attr('src', 'images/rusted metal floor.png');
+            oImage.addClass('tile-table');
+            oCell.append(oImage);
+            oCell.addClass('tile-table');
+            oRow.append(oCell);
+        }
+        oTable.append(oRow);
+    }
+};
+
 oPlant.sEmotion = "";
 
 oPlant.sRecent = "";
@@ -761,3 +796,5 @@ oPlant.sRecent = "";
 oPlant.sSection = "";
 
 oPlant.addMainEventListeners();
+
+oPlant.tilePlaySurface();
