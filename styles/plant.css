@@ -3,8 +3,24 @@
 }
 
 .card-cell {
-    height: 358px;
-    width: 219px;
+    border: 4px solid rgb(0,0,0);
+    height: 347px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 4px;
+    width: 203px;
+}
+
+.curved-border {
+    border: 4px solid rgb(96,0,0);
+    border-radius: 20px;
+    height: 347px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 4px;
+    width: 203px;
 }
 
 .hidden {

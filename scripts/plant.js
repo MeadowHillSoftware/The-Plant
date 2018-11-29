@@ -217,7 +217,6 @@ oPlant.createTotals = function() {
 };
 
 oPlant.determineEnding = function(bEdge) {
-    console.log('determining');
     if (bEdge) {
         var iIndex = 0;
     } else {
@@ -262,6 +261,7 @@ oPlant.drawCard = function() {
     var oImg = oImages[0];
     oImg = $(oImg);
     oImg.attr('src', sSource);
+    oCell.toggleClass('card-cell curved-border');
     oPlant.aCurrentCard = [sCard, iX, iY];
 };
 
@@ -628,7 +628,7 @@ oPlant.iAnger = 0;
 
 oPlant.iFear = 0;
 
-oPlant.iPlantSize = 7;
+oPlant.iPlantSize = 10;
 
 oPlant.iText = 0;
 
@@ -663,6 +663,7 @@ oPlant.moveCard = function(sKey) {
             var sCurrentCard = aCurrentCard[0];
             var sCurrentSource = "images/" + sCurrentCard;
             oNewImage.attr('src', sCurrentSource);
+            oNewCell.toggleClass('card-cell curved-border');
             var sCurrentId = String(iCurrentX) + "_" + String(iCurrentY);
             oPlant.aCurrentCard[1] = iNewX;
             oPlant.aCurrentCard[2] = iNewY;
@@ -675,12 +676,14 @@ oPlant.moveCard = function(sKey) {
                 var oLastImage = oLastCell.find('img');
                 oLastImage = $(oLastImage[0]);
                 oLastImage.attr('src', sLastSource);
+                oLastCell.toggleClass('curved-border card-cell');
             } else {
                 var sCurrentSelector = "#" + sCurrentId;
                 var oCurrentCell = $(sCurrentSelector);
                 var oCurrentImage = oCurrentCell.find('img');
                 oCurrentImage = $(oCurrentImage[0]);
                 oCurrentImage.attr('src', sNewSource);
+                oCurrentCell.toggleClass('curved-border card-cell');
             }
         }
     }
@@ -711,6 +714,7 @@ oPlant.placeCard = function() {
         var sCellId = String(iCurrentX) + "_"  + String(iCurrentY);
         var sSelector = "#" + sCellId;
         var oCell = $(sSelector);
+        oCell.toggleClass('curved-border card-cell');
         var oImage = oCell.find('img');
         oImage = $(oImage[0]);
         var iCurrent = oPlant.aPlacedCards.length;
