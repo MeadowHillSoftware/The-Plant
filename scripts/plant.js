@@ -357,6 +357,7 @@ oPlant.firstCard = function() {
     oTable.append(oRow);
     oPlant.aPlacedCards.push([sCard, 0, 0]);
     oPlant.getSection();
+    oPlant.updatePlaySurface();
 };
 
 oPlant.getDetailCard = function() {
@@ -756,6 +757,7 @@ oPlant.placeCard = function() {
         oPlant.aPlacedCards.push(aCurrentCard);
         oPlant.aCurrentCard = [];
     }
+    oPlant.updatePlaySurface();
 };
 
 oPlant.selectCard = function() {
@@ -789,6 +791,50 @@ oPlant.tilePlaySurface = function() {
     }
 };
 
+oPlant.updatePlaySurface = function() {
+    var iHeight = $(document).height();
+    var iWidth = $(document).width();
+    var iRows = iHeight / 512;
+    var iColumns = iWidth / 512;
+    iRows = Math.ceil(iRows);
+    iColumns = Math.ceil(iColumns);
+    var oTable = $('#tile-table');
+    var oRows = oTable.find('tr');
+    var iOldRows = oRows.length;
+    var oColumns = $(oRows[0]).find('td');
+    var iOldColumns = oColumns.length;
+    if (iOldRows < iRows) {
+        var oRow = $('<tr></tr>');
+        for (var c = 0; c < iColumns; c++) {
+            var oCell = $('<td></td>');
+            oCell.addClass('tile-table');
+            var oImage = $('<img></img>');
+            oImage.attr('src', 'images/rusted metal floor.png');
+            oImage.addClass('tile-table');
+            oCell.append(oImage);
+            oRow.append(oCell);
+        }
+        oTable.append(oRow);
+    }
+    oRows = oTable.find('tr');
+    if (iOldColumns < iColumns) {
+        for (var r = 0; r < iRows; r++) {
+            var oRow = oRows[r];
+            var oCells = $(oRow).find('td');
+            var iCells = oCells.length;
+            if (iCells < iColumns) {
+                var oCell = $('<td></td>');
+                oCell.addClass('tile-table');
+                var oImage = $('<img></img>');
+                oImage.attr('src', 'images/rusted metal floor.png');
+                oImage.addClass('tile-table');
+                oCell.append(oImage);
+                $(oRow).append(oCell);
+            }
+        }
+    }
+};
+
 oPlant.sEmotion = "";
 
 oPlant.sRecent = "";
@@ -796,5 +842,4 @@ oPlant.sRecent = "";
 oPlant.sSection = "";
 
 oPlant.addMainEventListeners();
-
 oPlant.tilePlaySurface();
